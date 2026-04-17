@@ -52,12 +52,15 @@ class StreamMusic(Resource):
             if token and not token.startswith("Bearer "):
                 token = f"Bearer {token}"
 
-        url = f"https://www.googleapis.com/drive/v3/files/{id}?alt=media"
+        if id.startswith("demo-"):
+            # Redirect to a public sample audio for demo purposes
+            sample_url = "https://www.bensound.com/bensound-music/bensound-creativeminds.mp3"
+            return Response(requests.get(sample_url, stream=True).iter_content(chunk_size=16384), content_type="audio/mpeg")
 
+        url = f"https://www.googleapis.com/drive/v3/files/{id}?alt=media"
+        
         try:
-            response = requests.get(url, headers={
-                "Authorization": token
-            }, stream=True, timeout=10)
+            response = requests.get(url, headers={"Authorization": token}, stream=True, timeout=10)
             
             # Aumentando chunk_size para 16KB para melhor performance de áudio
             return Response(response.iter_content(chunk_size=16384),

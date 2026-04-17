@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ThemeProvider, CssBaseline } from '@mui/material';
 import { AnimatePresence, motion } from 'framer-motion';
 
 // Hooks & Services
 import { useGoogleDrive } from './hooks/useGoogleDrive';
 
 // Theme & Constants
-import { premiumTheme } from './theme';
 import { tabOptions } from './constants';
 
 // Layout
@@ -23,8 +20,6 @@ import HomePage from './presentation/pages/HomePage';
 // Components
 import MusicPlayerBar from './components/MusicPlayer/MusicPlayerBar';
 
-const queryClient = new QueryClient();
-
 function App() {
   const { isSignedIn, handleAuth } = useGoogleDrive();
   const [currentTabOption, setCurrentTabOption] = useState(tabOptions.music);
@@ -32,11 +27,10 @@ function App() {
 
   if (!isSignedIn) {
     return (
-      <ThemeProvider theme={premiumTheme}>
-        <CssBaseline />
+      <>
         <div className="mesh-bg" />
         <LoginPage onAuth={handleAuth} />
-      </ThemeProvider>
+      </>
     );
   }
 
@@ -66,21 +60,18 @@ function App() {
   };
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider theme={premiumTheme}>
-        <CssBaseline />
-        <div className="mesh-bg" />
-        
-        <DashboardLayout currentTabOption={currentTabOption} setCurrentTabOption={setCurrentTabOption}>
-          <AnimatePresence mode="wait">
-            {renderContent()}
-          </AnimatePresence>
-        </DashboardLayout>
+    <>
+      <div className="mesh-bg" />
+      
+      <DashboardLayout currentTabOption={currentTabOption} setCurrentTabOption={setCurrentTabOption}>
+        <AnimatePresence mode="wait">
+          {renderContent()}
+        </AnimatePresence>
+      </DashboardLayout>
 
-        {/* Global Player Bar */}
-        <MusicPlayerBar currentMusic={currentMusic} />
-      </ThemeProvider>
-    </QueryClientProvider>
+      {/* Global Player Bar */}
+      <MusicPlayerBar currentMusic={currentMusic} />
+    </>
   );
 }
 

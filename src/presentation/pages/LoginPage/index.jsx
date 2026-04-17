@@ -41,14 +41,27 @@ const LoginPage = ({ onAuth }) => (
         
         <Box>
           <Typography variant="h4" sx={{ fontWeight: 800, mb: 1 }}>Smart Dash</Typography>
-          <Typography sx={{ color: 'var(--text-dim)', fontSize: '0.95rem' }}>
+          <Typography sx={{ color: 'var(--text-dim)', fontSize: '0.95rem', mb: 2 }}>
             Your premium music ecosystem powered by Google Drive.
           </Typography>
+          {!import.meta.env.VITE_GOOGLE_CLIENT_ID && (
+            <Typography variant="caption" sx={{ color: 'var(--primary-light)', bgcolor: 'rgba(157, 80, 187, 0.1)', px: 1.5, py: 0.5, borderRadius: '8px', fontWeight: 600 }}>
+              ⚠️ Running in Demo Mode (No Client ID found)
+            </Typography>
+          )}
         </Box>
 
-        <button className="btn-premium" onClick={onAuth}>
-          <Login /> Connect Google Drive
-        </button>
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, width: '100%' }}>
+          <button className="btn-premium" onClick={onAuth}>
+            <Login /> {import.meta.env.VITE_GOOGLE_CLIENT_ID ? 'Connect Google Drive' : 'Enter Demo Mode'}
+          </button>
+          
+          {!import.meta.env.VITE_GOOGLE_CLIENT_ID && (
+            <Typography variant="caption" sx={{ color: 'var(--text-dim)', maxWidth: 300 }}>
+              To use real data, please add your <b>VITE_GOOGLE_CLIENT_ID</b> to the <b>.env</b> file.
+            </Typography>
+          )}
+        </Box>
       </Box>
     </motion.div>
   </Box>

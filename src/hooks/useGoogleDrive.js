@@ -43,7 +43,8 @@ export const useGoogleDrive = () => {
 
   const handleAuth = () => {
     if (!CLIENT_ID) {
-      alert("Por favor, configure o VITE_GOOGLE_CLIENT_ID no arquivo .env");
+      console.warn("VITE_GOOGLE_CLIENT_ID missing. Entering Demo Mode...");
+      handleDemoLogin();
       return;
     }
 
@@ -60,10 +61,15 @@ export const useGoogleDrive = () => {
     client.requestAccessToken();
   };
 
+  const handleDemoLogin = () => {
+    localStorage.setItem('google_access_token', 'demo_token_123');
+    setIsSignedIn(true);
+  };
+
   const handleLogout = () => {
     localStorage.removeItem('google_access_token');
     setIsSignedIn(false);
   };
 
-  return { isSignedIn, files, loading, error, handleAuth, handleLogout, listFiles };
+  return { isSignedIn, files, loading, error, handleAuth, handleLogout, listFiles, handleDemoLogin };
 };
