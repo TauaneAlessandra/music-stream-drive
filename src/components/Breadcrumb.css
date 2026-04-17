@@ -1,0 +1,47 @@
+.air-breadcrumb-container {
+  padding: 1rem 0;
+  margin-bottom: 1rem;
+}
+
+.air-breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--text-dim);
+}
+
+.air-breadcrumb-item a {
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: var(--transition);
+  font-weight: 500;
+}
+
+.air-breadcrumb-item a:hover {
+  color: var(--primary);
+  text-shadow: 0 0 10px var(--primary-glow);
+}
+
+.air-breadcrumb-item div, 
+.air-breadcrumb-item span {
+  color: var(--text-main);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.air-breadcrumb-separator {
+  color: rgba(255, 255, 255, 0.2);
+  user-select: none;
+  font-weight: 300;
+}
+
+/* Glassmorphism adaptation */
+.air-breadcrumb-container {
+  background: rgba(255, 255, 255, 0.02);
+  padding: 10px 20px;
+  border-radius: 12px;
+  border: 1px solid var(--border-glass);
+  backdrop-filter: blur(8px);
+}
