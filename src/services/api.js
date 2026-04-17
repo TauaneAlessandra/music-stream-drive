@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://localhost:19131/music/', // Base URL aligned with Smart Dash Backend
+  baseURL: import.meta.env.VITE_API_URL || 'https://localhost:19131/music/', 
 });
 
 // Interceptor para injetar o Token do Google se necessário

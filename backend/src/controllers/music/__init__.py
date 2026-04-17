@@ -45,13 +45,22 @@ class GetDriveMusics(Resource):
 class StreamMusic(Resource):
 
     def get(self, id):
+        # Tenta pegar o token do header ou do query param (necessário para tag <audio>)
         token = request.headers.get("Authorization")
+        if not token:
+            token = request.args.get("token")
+            if token and not token.startswith("Bearer "):
+                token = f"Bearer {token}"
 
         url = f"https://www.googleapis.com/drive/v3/files/{id}?alt=media"
 
-        response = requests.get(url, headers={
-            "Authorization": token
-        }, stream=True)
-
-        return Response(response.iter_content(chunk_size=1024),
-                        content_type=response.headers.get('Content-Type'))
+        try:
+            response = requests.get(url, headers={
+                "Authorization": token
+            }, stream=True, timeout=10)
+            
+            # Aumentando chunk_size para 16KB para melhor performance de áudio
+            return Response(response.iter_content(chunk_size=16384),
+                            content_type=response.headers.get('Content-Type'))
+        except Exception as e:
+            return {"error": str(e)}, 500

@@ -15,5 +15,7 @@ export const getMusics = async () => {
  * @returns {string} Backend proxy stream URL
  */
 export const getStreamUrl = (id) => {
-  return `https://localhost:19131/music/stream/${id}`;
+  const token = localStorage.getItem('google_access_token');
+  const baseUrl = import.meta.env.VITE_API_URL || 'https://localhost:19131/music/';
+  return `${baseUrl}stream/${id}${token ? `?token=${token}` : ''}`;
 };

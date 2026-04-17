@@ -30,20 +30,7 @@ function App() {
   const [currentTabOption, setCurrentTabOption] = useState(tabOptions.music);
   const [currentMusic, setCurrentMusic] = useState(null);
 
-  useEffect(() => {
-    if (isSignedIn) {
-      const authInstance = window.gapi?.auth2?.getAuthInstance();
-      const token = authInstance?.currentUser?.get()?.getAuthResponse()?.access_token;
-      if (token) {
-        localStorage.setItem('google_access_token', token);
-      }
-    }
-  }, [isSignedIn]);
-
-  // Bypass temporário para visualização direta do App sem login
-  const bypassLogin = true; 
-
-  if (!isSignedIn && !bypassLogin) {
+  if (!isSignedIn) {
     return (
       <ThemeProvider theme={premiumTheme}>
         <CssBaseline />
