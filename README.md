@@ -8,6 +8,7 @@
 ## ✨ Funcionalidades
 
 - ☁️ **Integração com Google Drive:** Sincronização direta com seus arquivos de áudio armazenados na nuvem.
+- 🕹️ **Modo Demo:** Possibilidade de explorar a interface e funcionalidades mesmo sem um Client ID configurado.
 - 🎨 **Design Premium:** Interface moderna com efeito glassmorphic, modo escuro nativo e animações suaves via Framer Motion.
 - 📡 **Streaming em Tempo Real:** Player global que permite navegação contínua pelo app sem interromper a música.
 - 📊 **Dashboard & Analytics:** Visão geral do armazenamento e estatísticas da sua biblioteca.
