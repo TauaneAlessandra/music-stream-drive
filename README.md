@@ -1,9 +1,9 @@
-# 🎵 Smart Dash - Premium Music Streaming
+# 🎵 VibeStream - Premium Music Streaming
 
-![Smart Dash Preview](https://img.shields.io/badge/Design-Glassmorphism-9d50bb)
+![VibeStream Preview](https://img.shields.io/badge/Design-Glassmorphism-9d50bb)
 ![Tech Stack](https://img.shields.io/badge/Stack-React%20%7C%20MUI%20%7C%20Vite-blue)
 
-O **Smart Dash** é uma plataforma de streaming de música premium que transforma seu Google Drive em uma biblioteca musical interativa. Com um design sofisticado baseado em *Glassmorphism* e micro-animações, o app oferece uma experiência de usuário fluida e moderna.
+**VibeStream** é um player de música premium desenvolvido com React e Vite, integrado à API do Google Drive para streaming direto. Conta com uma interface sofisticada em design glassmorphic, controles de áudio dinâmicos e navegação inteligente, unindo estética moderna a uma experiência de reprodução fluida, responsiva e de alta performance.
 
 ## ✨ Funcionalidades
 
@@ -44,7 +44,7 @@ src/
 
 1. **Clone o repositório:**
    ```bash
-   git clone https://github.com/seu-usuario/musica-app.git
+    git clone https://github.com/TauaneAlessandra/music-stream-drive.git
    ```
 
 2. **Instale as dependências:**
